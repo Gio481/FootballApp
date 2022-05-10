@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/homeClubFavoriteView"
+        android:layout_width="@dimen/dimen_15_dp"
+        android:layout_height="@dimen/dimen_15_dp"
+        android:background="@drawable/make_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/homeClubLogoImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/homeClubLogoImageView" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/homeClubLogoImageView"
+        android:layout_width="@dimen/dimen_40_dp"
+        android:layout_height="@dimen/dimen_40_dp"
+        android:layout_marginStart="@dimen/dimen_7_dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toEndOf="@id/homeClubFavoriteView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/homeClubNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5_dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_12_sp"
+        app:layout_constraintEnd_toEndOf="@id/homeClubLogoImageView"
+        app:layout_constraintStart_toStartOf="@id/homeClubLogoImageView"
+        app:layout_constraintTop_toBottomOf="@id/homeClubLogoImageView"
+        tools:text="Barcelona" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_25_sp"
+        app:layout_constraintBottom_toBottomOf="@id/homeClubLogoImageView"
+        app:layout_constraintEnd_toStartOf="@id/awayClubLogoImageView"
+        app:layout_constraintStart_toEndOf="@id/homeClubLogoImageView"
+        app:layout_constraintTop_toTopOf="@id/homeClubLogoImageView"
+        tools:text="5 : 2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/matchTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey_200"
+        android:textSize="@dimen/dimen_12_sp"
+        app:layout_constraintEnd_toStartOf="@id/awayClubLogoImageView"
+        app:layout_constraintStart_toEndOf="@id/homeClubLogoImageView"
+        app:layout_constraintTop_toBottomOf="@id/scoreTextView"
+        tools:text="79'" />
+
+
+    <View
+        android:id="@+id/awayClubFavoriteView"
+        android:layout_width="@dimen/dimen_15_dp"
+        android:layout_height="@dimen/dimen_15_dp"
+        android:background="@drawable/make_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/homeClubLogoImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/awayClubLogoImageView"
+        android:layout_width="@dimen/dimen_40_dp"
+        android:layout_height="@dimen/dimen_40_dp"
+        android:layout_marginEnd="@dimen/dimen_7_dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toStartOf="@id/awayClubFavoriteView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/awayClubNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5_dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_12_sp"
+        app:layout_constraintEnd_toEndOf="@id/awayClubLogoImageView"
+        app:layout_constraintStart_toStartOf="@id/awayClubLogoImageView"
+        app:layout_constraintTop_toBottomOf="@id/awayClubLogoImageView"
+        tools:text="Barcelona" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
