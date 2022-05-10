@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.matches.MatchesFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_200_dp"
+        android:background="@color/green_500"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/backView"
+        android:layout_width="@dimen/dimen_25_dp"
+        android:layout_height="@dimen/dimen_25_dp"
+        android:layout_margin="@dimen/dimen_20_dp"
+        android:background="@drawable/ic_back"
+        android:backgroundTint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/notificationView"
+        android:layout_width="@dimen/dimen_20_dp"
+        android:layout_height="@dimen/dimen_20_dp"
+        android:layout_marginHorizontal="@dimen/dimen_20_dp"
+        android:layout_marginTop="@dimen/dimen_25_dp"
+        android:background="@drawable/notification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/matchPreviewTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_preview_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_17_sp"
+        app:layout_constraintEnd_toStartOf="@id/notificationView"
+        app:layout_constraintStart_toEndOf="@id/backView"
+        app:layout_constraintTop_toTopOf="@id/backView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/gameWeek3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gameweek_3_text"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/dimen_14_sp"
+        app:layout_constraintEnd_toStartOf="@id/notificationView"
+        app:layout_constraintStart_toEndOf="@id/backView"
+        app:layout_constraintTop_toBottomOf="@id/matchPreviewTextView" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0_dp"
+        android:layout_marginHorizontal="@dimen/dimen_20_dp"
+        android:layout_marginTop="@dimen/dimen_20_dp"
+        android:elevation="@dimen/dimen_20_dp"
+        app:cardCornerRadius="@dimen/dimen_10_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameWeek3TextView">
+
+        <com.example.footballapp.presentation.custom_view.MatchInfoCustomView
+            android:id="@+id/matchInfoCustomView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="@dimen/dimen_10_dp"
+            tools:matchDate="2 September 2018"
+            tools:matchStadium="Camp Nou Stadium" />
+
+        <com.example.footballapp.presentation.custom_view.ClubsInfoCustomView
+            android:id="@+id/clubsInfoCustomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginHorizontal="@dimen/dimen_30_dp"
+            android:layout_marginTop="@dimen/dimen_60_dp"
+            tools:awayTeamName="Real"
+            tools:homeTeamName="Barsa"
+            tools:score="89 : 0"
+            tools:time="86'" />
+
+        <com.example.footballapp.presentation.custom_view.MatchOverviewCustomView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_30_dp"
+            android:layout_marginTop="@dimen/dimen_140_dp" />
+
+        <com.example.footballapp.presentation.custom_view.ClubsBallPossessionCustomView
+            android:id="@+id/clubsBallPossessionCustomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_30_dp"
+            android:layout_marginTop="@dimen/dimen_190_dp"
+            tools:awayTeamPossession="30%"
+            tools:homeTeamPossession="70%" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/matchActionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_250_dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
