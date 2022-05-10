@@ -13,9 +13,9 @@ class MatchInfoCustomView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val binding: MatchInfoCutomViewBinding by lazy {
+    private val binding: MatchInfoCutomViewBinding =
         MatchInfoCutomViewBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+
 
     var matchDate: String? = null
         set(value) {
