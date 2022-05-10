@@ -17,7 +17,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     protected val binding get() = _binding!!
     private lateinit var viewModel: VM
     abstract val inflater: BindingInflater<VB>
-    abstract fun getViewModelClass(): Class<VM>
+    abstract fun getViewModelClass(): KClass<VM>
     abstract fun onBindViewModel(viewModel: VM)
 
     override fun onCreateView(
@@ -31,7 +31,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[getViewModelClass()]
+        viewModel = getViewModel(clazz = getViewModelClass())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
