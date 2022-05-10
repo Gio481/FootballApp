@@ -12,9 +12,10 @@ class ClubsInfoCustomView @JvmOverloads constructor(
     attrs: AttributeSet,
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private val binding: ClubsInfoCustomViewBinding by lazy {
+
+    private val binding: ClubsInfoCustomViewBinding =
         ClubsInfoCustomViewBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+
 
     var homeTeamName: String? = null
         set(value) {

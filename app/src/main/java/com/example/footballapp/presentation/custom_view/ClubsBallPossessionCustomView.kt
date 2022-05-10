@@ -14,9 +14,9 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val binding by lazy {
+    private val binding =
         ClubsBallPossessionCustomViewBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+
 
     var homeTeamPossession: String? = null
         set(value) {
