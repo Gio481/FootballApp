@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">FootballApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="match_preview_text">Match Preview</string>
+    <string name="gameweek_3_text">Gameweek 3</string>
+    <string name="overview_text">overview</string>
+    <string name="statistic_text">Statistic</string>
+    <string name="line_up_text">Line up</string>
+    <string name="matches_screen_text">Matches</string>
+    <string name="top_players_screen">Top Players</string>
+    <string name="videos_screen">Videos</string>
+    <string name="favorites_screen">Favorites</string>
+    <string name="settings_screen">Settings</string>
 </resources>
