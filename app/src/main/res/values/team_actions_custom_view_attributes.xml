@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TeamActionsCustomView">
+        <attr name="actionType">
+            <enum name="goal" value="0" />
+            <enum name="yellowCard" value="1" />
+            <enum name="redCard" value="2" />
+            <enum name="substitution" value="3" />
+        </attr>
+        <attr name="goalType">
+            <enum name="goal" value="0" />
+            <enum name="ownGoal" value="1" />
+        </attr>
+        <attr name="teamType">
+            <enum name="home" value="0" />
+            <enum name="away" value="1" />
+        </attr>
+        <attr name="action" format="string" />
+    </declare-styleable>
+</resources>
