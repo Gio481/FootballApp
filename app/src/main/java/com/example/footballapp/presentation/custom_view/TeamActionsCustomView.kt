@@ -46,6 +46,24 @@ class TeamActionsCustomView @JvmOverloads constructor(
             field = value
         }
 
+    var subOnPlayer: String? = null
+        set(value) {
+            binding.mainPlayerTextView.text = value
+            field = value
+        }
+
+    var subOffPlayer: String? = null
+        set(value) {
+            binding.subOffPlayerTextView.text = value
+            field = value
+        }
+
+    var mainActionPlayer: String? = null
+        set(value) {
+            binding.mainPlayerTextView.text = value
+            field = value
+        }
+
     init {
         val typedArray = context.theme.obtainStyledAttributes(
             attrs,
@@ -65,6 +83,9 @@ class TeamActionsCustomView @JvmOverloads constructor(
             MatchTeamType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_teamType, 0)]
 
         action = typedArray.getString(R.styleable.TeamActionsCustomView_action)
+        subOnPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOnPlayer)
+        subOffPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOffPlayer)
+        mainActionPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_mainActionPlayer)
         typedArray.recycle()
     }
 
