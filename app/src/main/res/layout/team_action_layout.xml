@@ -2,16 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dimen_20_dp"
+    android:paddingVertical="@dimen/dimen_10_dp">
 
     <com.example.footballapp.presentation.custom_view.TeamActionsCustomView
+        android:id="@+id/teamActionsCustomView"
         android:layout_width="match_parent"
-        app:actionType="goal"
-        app:action="49' goal"
-        app:teamType="home"
-        app:goalType="ownGoal"
         android:layout_height="match_parent"
+        app:action="49' goal"
+        app:actionType="goal"
+        app:goalType="ownGoal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:mainActionPlayer="giorgi"
+        app:teamType="home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
