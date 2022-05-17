@@ -3,5 +3,6 @@
     <declare-styleable name="ClubsBallPossessionCustomView">
         <attr name="homeTeamPossession" format="string" />
         <attr name="awayTeamPossession" format="string" />
+        <attr name="possession" format="integer" />
     </declare-styleable>
 </resources>

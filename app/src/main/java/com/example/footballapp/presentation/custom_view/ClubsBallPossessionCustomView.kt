@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.footballapp.R
 import com.example.footballapp.databinding.ClubsBallPossessionCustomViewBinding
-import com.example.footballapp.util.extensions.possessionProgress
 
 class ClubsBallPossessionCustomView @JvmOverloads constructor(
     context: Context,
@@ -20,16 +19,19 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
 
     var homeTeamPossession: String? = null
         set(value) {
-            with(binding) {
-                homeTeamBallPossessionTextView.text = value
-                ballPossessionProgressBar.progress = value.possessionProgress()
-            }
+            binding.homeTeamBallPossessionTextView.text = value
             field = value
         }
 
     var awayTeamPossession: String? = null
         set(value) {
             binding.awayTeamBallPossessionTextView.text = value
+            field = value
+        }
+
+    var possession: Int = 0
+        set(value) {
+            binding.ballPossessionProgressBar.progress = value
             field = value
         }
 
@@ -44,6 +46,7 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
             typedArray.getString(R.styleable.ClubsBallPossessionCustomView_homeTeamPossession)
         awayTeamPossession =
             typedArray.getString(R.styleable.ClubsBallPossessionCustomView_awayTeamPossession)
+        possession = typedArray.getInt(R.styleable.ClubsBallPossessionCustomView_possession, 0)
         typedArray.recycle()
     }
 
