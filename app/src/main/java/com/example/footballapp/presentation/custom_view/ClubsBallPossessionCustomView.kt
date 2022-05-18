@@ -19,9 +19,7 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
 
     var homeTeamPossession: String? = null
         set(value) {
-            with(binding) {
-                homeTeamBallPossessionTextView.text = value
-            }
+            binding.homeTeamBallPossessionTextView.text = value
             field = value
         }
 
@@ -31,7 +29,7 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
             field = value
         }
 
-    var ballPossession: Int = 0
+    var possession: Int = 0
         set(value) {
             binding.ballPossessionProgressBar.progress = value
             field = value
@@ -48,8 +46,7 @@ class ClubsBallPossessionCustomView @JvmOverloads constructor(
             typedArray.getString(R.styleable.ClubsBallPossessionCustomView_homeTeamPossession)
         awayTeamPossession =
             typedArray.getString(R.styleable.ClubsBallPossessionCustomView_awayTeamPossession)
-        ballPossession =
-            typedArray.getInt(R.styleable.ClubsBallPossessionCustomView_ballPossession, 0)
+        possession = typedArray.getInt(R.styleable.ClubsBallPossessionCustomView_possession, 0)
         typedArray.recycle()
     }
 

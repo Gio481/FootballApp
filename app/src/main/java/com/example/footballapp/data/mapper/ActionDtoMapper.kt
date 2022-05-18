@@ -12,9 +12,9 @@ class ActionDtoMapper(private val playerDtoMapper: PlayerDtoMapper) :
             with(playerDtoMapper) {
                 ActionDomain(
                     goalType = goalType,
-                    player = modelMapper(player!!),
-                    player1 = modelMapper(player1!!),
-                    player2 = modelMapper(player2!!)
+                    player = modelMapper(player),
+                    player1 = modelMapper(player1),
+                    player2 = modelMapper(player2)
                 )
             }
         }
