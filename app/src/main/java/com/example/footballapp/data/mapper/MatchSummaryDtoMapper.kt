@@ -9,11 +9,13 @@ class MatchSummaryDtoMapper(private val teamActionDtoMapper: TeamActionDtoMapper
 
     override fun modelMapperIntoList(model: MatchSummaryDto): List<SummaryDomain> {
         return model.summaries.map {
-            SummaryDomain(
-                actionTime = it.actionTime,
-                team1Action = teamActionDtoMapper.modelListMapper(it.team1Action),
-                team2Action = teamActionDtoMapper.modelListMapper(it.team2Action),
-            )
+            with(it) {
+                SummaryDomain(
+                    actionTime = actionTime,
+                    team1Action = team1Action?.let { action-> teamActionDtoMapper.modelListMapper(action) },
+                    team2Action = team2Action?.let { action-> teamActionDtoMapper.modelListMapper(action) },
+                )
+            }
         }
     }
 }
