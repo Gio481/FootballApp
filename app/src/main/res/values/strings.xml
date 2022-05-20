@@ -10,4 +10,6 @@
     <string name="videos_screen">Videos</string>
     <string name="favorites_screen">Favorites</string>
     <string name="settings_screen">Settings</string>
+    <string name="first_half_text">1st alf</string>
+    <string name="second_half_text">2nd half</string>
 </resources>
