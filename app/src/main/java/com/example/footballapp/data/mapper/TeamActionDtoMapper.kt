@@ -12,7 +12,7 @@ class TeamActionDtoMapper(private val actionDtoMapper: ActionDtoMapper) :
             TeamActionDomain(
                 action = actionDtoMapper.modelMapper(action),
                 actionType = actionType,
-                teamType = actionType
+                teamType = teamType
             )
         }
     }
