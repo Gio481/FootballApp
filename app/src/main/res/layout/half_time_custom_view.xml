@@ -7,30 +7,29 @@
     android:background="@drawable/match_half_time_background">
 
     <TextView
-        android:textSize="@dimen/dimen_9_sp"
         android:id="@+id/matchHalfTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginStart="@dimen/dimen_20_dp"
         android:textColor="@color/grey_400"
+        android:textSize="@dimen/dimen_9_sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SmallSp"
-        tools:text="1st Half" />
+        tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:textSize="@dimen/dimen_9_sp"
-        android:textColor="@color/grey_400"
-        android:textStyle="bold"
+        android:id="@+id/halfTimeScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_20_dp"
+        android:textColor="@color/grey_400"
+        android:textSize="@dimen/dimen_9_sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SmallSp"
-        tools:text="3:2" />
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
