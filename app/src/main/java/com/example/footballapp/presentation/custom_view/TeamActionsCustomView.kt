@@ -12,6 +12,7 @@ import com.example.footballapp.presentation.ui.matches.types.GoalType
 import com.example.footballapp.presentation.ui.matches.types.MatchActionsType
 import com.example.footballapp.presentation.ui.matches.types.MatchTeamType
 import com.example.footballapp.util.extensions.isVisible
+import com.example.footballapp.util.getActionType
 
 class TeamActionsCustomView @JvmOverloads constructor(
     context: Context,
@@ -72,9 +73,9 @@ class TeamActionsCustomView @JvmOverloads constructor(
             0
         )
 
-        actionType =
-            MatchActionsType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_actionType,
-                0)]
+        actionType = getActionType(binding.teamActionsLayout) {
+            MatchActionsType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_actionType, 6)]
+        }
 
         goalType =
             GoalType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_goalType, 0)]
@@ -98,7 +99,7 @@ class TeamActionsCustomView @JvmOverloads constructor(
 
     private fun displayTeam(float: Float) {
         with(binding) {
-            matchActionsLayout.scaleX = float
+            teamActionsLayout.scaleX = float
             mainPlayerTextView.scaleX = float
             subOffPlayerTextView.scaleX = float
             actionTextView.scaleX = float
@@ -150,8 +151,7 @@ class TeamActionsCustomView @JvmOverloads constructor(
             subOffPlayerTextView.isVisible(visible)
             subOffView.isVisible(visible)
             subOnView.isInvisible = !visible
-            roundDecoratorViewOnActions.isVisible(!visible)
-            roundDecoratorViewOnSubstitution.isVisible(visible)
+            teamActionsLayout.isVisible(true)
         }
     }
 
