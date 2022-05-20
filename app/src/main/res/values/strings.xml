@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">FootballApp</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="match_preview_text">Match Preview</string>
     <string name="gameweek_3_text">Gameweek 3</string>
     <string name="overview_text">overview</string>
