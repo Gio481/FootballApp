@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import com.example.footballapp.R
 import com.example.footballapp.databinding.TeamActionsCustomViewBinding
@@ -12,6 +11,8 @@ import com.example.footballapp.presentation.ui.matches.types.GoalType
 import com.example.footballapp.presentation.ui.matches.types.MatchActionsType
 import com.example.footballapp.presentation.ui.matches.types.MatchTeamType
 import com.example.footballapp.util.extensions.isVisible
+import com.example.footballapp.util.extensions.setBackground
+import com.example.footballapp.util.extensions.setBackgroundTint
 import com.example.footballapp.util.getActionType
 
 class TeamActionsCustomView @JvmOverloads constructor(
@@ -74,7 +75,8 @@ class TeamActionsCustomView @JvmOverloads constructor(
         )
 
         actionType = getActionType(binding.teamActionsLayout) {
-            MatchActionsType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_actionType, 6)]
+            MatchActionsType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_actionType,
+                6)]
         }
 
         goalType =
@@ -138,8 +140,8 @@ class TeamActionsCustomView @JvmOverloads constructor(
 
     private fun configureActionView(item: Int, color: Int? = null) {
         with(binding.actionView) {
-            background = ContextCompat.getDrawable(context, item)
-            color?.let { background.setTint(ContextCompat.getColor(context, it)) }
+            setBackground(context, item)
+            color?.let { setBackgroundTint(context, it) }
         }
     }
 
