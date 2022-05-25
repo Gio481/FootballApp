@@ -67,7 +67,6 @@
         android:id="@+id/actionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_card"
         app:layout_constraintBottom_toBottomOf="@id/lineView"
         app:layout_constraintEnd_toEndOf="@id/subOnView"
         app:layout_constraintTop_toTopOf="@id/lineView" />
