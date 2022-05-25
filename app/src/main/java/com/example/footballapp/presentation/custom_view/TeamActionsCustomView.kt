@@ -10,16 +10,14 @@ import com.example.footballapp.databinding.TeamActionsCustomViewBinding
 import com.example.footballapp.presentation.ui.matches.types.GoalType
 import com.example.footballapp.presentation.ui.matches.types.MatchActionsType
 import com.example.footballapp.presentation.ui.matches.types.MatchTeamType
-import com.example.footballapp.util.extensions.isVisible
-import com.example.footballapp.util.extensions.setBackground
-import com.example.footballapp.util.extensions.setBackgroundTint
+import com.example.footballapp.util.extensions.*
 import com.example.footballapp.util.getActionType
 
-class TeamActionsCustomView @JvmOverloads constructor(
+class TeamActionsCustomView(
     context: Context,
     attrs: AttributeSet,
     defStyleAttrs: Int = 0,
-) : ConstraintLayout(context, attrs, defStyleAttrs) {
+) : ConstraintLayout(context) {
 
     private val binding =
         TeamActionsCustomViewBinding.inflate(LayoutInflater.from(context), this, true)
@@ -39,12 +37,6 @@ class TeamActionsCustomView @JvmOverloads constructor(
     var teamType: MatchTeamType? = null
         set(value) {
             value?.let { determineTeamType(it) }
-            field = value
-        }
-
-    var action: String? = null
-        set(value) {
-            binding.actionTextView.text = value
             field = value
         }
 
@@ -74,9 +66,9 @@ class TeamActionsCustomView @JvmOverloads constructor(
             0
         )
 
-        actionType = getActionType(binding.teamActionsLayout) {
+        actionType = getActionType(binding.root) {
             MatchActionsType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_actionType,
-                6)]
+                -1)]
         }
 
         goalType =
@@ -85,7 +77,6 @@ class TeamActionsCustomView @JvmOverloads constructor(
         teamType =
             MatchTeamType.values()[typedArray.getInt(R.styleable.TeamActionsCustomView_teamType, 0)]
 
-        action = typedArray.getString(R.styleable.TeamActionsCustomView_action)
         subOnPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOnPlayer)
         subOffPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOffPlayer)
         mainActionPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_mainActionPlayer)
@@ -94,20 +85,10 @@ class TeamActionsCustomView @JvmOverloads constructor(
 
     private fun determineTeamType(teamType: MatchTeamType) {
         when (teamType) {
-            MatchTeamType.TEAM1 -> displayTeam(1f)
-            MatchTeamType.TEAM2 -> displayTeam(-1f)
+            MatchTeamType.TEAM1 -> binding.root.layoutDirection = LAYOUT_DIRECTION_LTR
+            MatchTeamType.TEAM2 -> binding.root.layoutDirection = LAYOUT_DIRECTION_RTL
         }
     }
-
-    private fun displayTeam(float: Float) {
-        with(binding) {
-            teamActionsLayout.scaleX = float
-            mainPlayerTextView.scaleX = float
-            subOffPlayerTextView.scaleX = float
-            actionTextView.scaleX = float
-        }
-    }
-
 
     private fun determineGoalType(goalType: GoalType) {
         if (actionType == MatchActionsType.GOAL) {
@@ -148,13 +129,48 @@ class TeamActionsCustomView @JvmOverloads constructor(
 
     private fun isActionSubstitution(visible: Boolean) {
         with(binding) {
-            actionView.isVisible(!visible)
+            actionView.isInvisible = visible
             subOffPlayerImageView.isVisible(visible)
             subOffPlayerTextView.isVisible(visible)
             subOffView.isVisible(visible)
             subOnView.isInvisible = !visible
-            teamActionsLayout.isVisible(true)
+            root.isVisible(true)
         }
+    }
+
+    fun setNonSubstitutionPlayerImage(mainPlayerUrl: String?) {
+        mainPlayerUrl?.let { binding.mainPlayerImageView.setImage(it) }
+    }
+
+    fun setSubstitutionPlayersImage(subOnPlayer: String?, subOffPlayer: String?) {
+        subOnPlayer?.let { binding.mainPlayerImageView.setImage(it) }
+        subOffPlayer?.let { binding.subOffPlayerImageView.setImage(it) }
+    }
+
+    fun setMathActionText(matchActionsType: Int, actionTime: String) {
+        with(binding.actionTextView) {
+            when (matchActionsType) {
+                MatchActionsType.YELLOW_CARD.value -> text = TRIPPING_TEXT.getString(actionTime, context)
+                MatchActionsType.RED_CARD.value -> text = TRIPPING_TEXT.getString(actionTime, context)
+                MatchActionsType.SUBSTITUTION.value -> text = SUBSTITUTION_TEXT.getString(actionTime, context)
+            }
+        }
+    }
+
+    fun setGoalActionText(goalType: Int, actionTime: String) {
+        with(binding.actionTextView) {
+            when (goalType) {
+                GoalType.GOAL.value -> text = GOAL_TEXT.getString(actionTime, context)
+                GoalType.OWN_GOAL.value -> {
+                    text = OWN_GOAL_TEXT.getString(actionTime, context)
+                    setColor(RED_COLOR)
+                }
+            }
+        }
+    }
+
+    fun removeRoundView() {
+        binding.roundDecoratorViewOnActions.isVisible(false)
     }
 
     companion object {
@@ -162,5 +178,9 @@ class TeamActionsCustomView @JvmOverloads constructor(
         private const val CARD = R.drawable.ic_card
         private const val RED_COLOR = R.color.red_700
         private const val GREEN_COLOR = R.color.green_500
+        private const val TRIPPING_TEXT = R.string.tripping_text
+        private const val SUBSTITUTION_TEXT = R.string.substitution_text
+        private const val GOAL_TEXT = R.string.goal_text
+        private const val OWN_GOAL_TEXT = R.string.own_goal_text
     }
 }
