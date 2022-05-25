@@ -12,4 +12,9 @@
     <string name="settings_screen">Settings</string>
     <string name="first_half_text">1st alf</string>
     <string name="second_half_text">2nd half</string>
+    <string name="ball_possession_text">Ball Possession</string>
+    <string name="tripping_text">\' Tripping</string>
+    <string name="substitution_text">\' Substitution</string>
+    <string name="goal_text">\' Goals by</string>
+    <string name="own_goal_text">\' Own Goal</string>
 </resources>
