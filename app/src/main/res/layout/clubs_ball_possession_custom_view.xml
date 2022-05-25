@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toStartOf="@id/awayTeamBallPossessionTextView"
         app:layout_constraintStart_toEndOf="@id/homeTeamBallPossessionTextView"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ball Possession" />
+        android:text="@string/ball_possession_text" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/awayTeamBallPossessionTextView"
