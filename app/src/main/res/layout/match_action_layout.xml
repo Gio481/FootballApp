@@ -2,31 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen_50_dp">
+    android:layout_height="wrap_content">
 
     <com.example.footballapp.presentation.custom_view.HalfTimeCustomView
         android:id="@+id/halfTimeCustomView"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:halfTime="firstHalf"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.footballapp.presentation.custom_view.TeamActionsCustomView
-        android:id="@+id/team1ActionsCustomView"
+    <com.example.footballapp.presentation.custom_view.TeamActionsContainerCustomView
+        android:id="@+id/team1ActionsContainerCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_20_dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView"
-        app:teamType="home" />
+        android:layout_marginHorizontal="@dimen/dimen_15_dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView" />
 
-    <com.example.footballapp.presentation.custom_view.TeamActionsCustomView
-        android:id="@+id/team2ActionsCustomView"
+    <com.example.footballapp.presentation.custom_view.TeamActionsContainerCustomView
+        android:id="@+id/team2ActionsContainerCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_20_dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView"
-        app:teamType="away" />
+        android:layout_marginHorizontal="@dimen/dimen_15_dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
