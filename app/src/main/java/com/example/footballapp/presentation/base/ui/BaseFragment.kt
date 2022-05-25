@@ -1,4 +1,4 @@
-package com.example.footballapp.presentation.base
+package com.example.footballapp.presentation.base.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

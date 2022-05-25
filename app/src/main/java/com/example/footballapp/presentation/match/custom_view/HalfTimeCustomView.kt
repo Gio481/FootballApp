@@ -1,4 +1,4 @@
-package com.example.footballapp.presentation.custom_view
+package com.example.footballapp.presentation.match.custom_view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.footballapp.R
 import com.example.footballapp.databinding.HalfTimeCustomViewBinding
-import com.example.footballapp.presentation.ui.matches.types.HalfTimeType
+import com.example.footballapp.presentation.match.types.HalfTimeType
 
 class HalfTimeCustomView @JvmOverloads constructor(
     context: Context,

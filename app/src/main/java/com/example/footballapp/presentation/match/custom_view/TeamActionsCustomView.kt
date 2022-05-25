@@ -1,4 +1,4 @@
-package com.example.footballapp.presentation.custom_view
+package com.example.footballapp.presentation.match.custom_view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,9 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isInvisible
 import com.example.footballapp.R
 import com.example.footballapp.databinding.TeamActionsCustomViewBinding
-import com.example.footballapp.presentation.ui.matches.types.GoalType
-import com.example.footballapp.presentation.ui.matches.types.MatchActionsType
-import com.example.footballapp.presentation.ui.matches.types.MatchTeamType
+import com.example.footballapp.presentation.match.types.GoalType
+import com.example.footballapp.presentation.match.types.MatchActionsType
+import com.example.footballapp.presentation.match.types.MatchTeamType
 import com.example.footballapp.util.extensions.*
 import com.example.footballapp.util.getActionType
 
