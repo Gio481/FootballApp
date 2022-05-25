@@ -1,4 +1,4 @@
-package com.example.footballapp.presentation.ui.matches.viewmodel
+package com.example.footballapp.presentation.match.viewmodel
 
 import androidx.lifecycle.ViewModel
 

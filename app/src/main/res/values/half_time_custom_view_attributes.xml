@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HalfTimeCustomView">
+        <attr name="halfTime">
+            <enum name="firstHalf" value="0" />
+            <enum name="secondHalf" value="1" />
+        </attr>
+
+        <attr name="halfTimeScore" format="string" />
+    </declare-styleable>
+</resources>

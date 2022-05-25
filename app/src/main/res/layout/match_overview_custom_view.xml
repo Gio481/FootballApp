@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/statistic_text"
-        android:textColor="@color/grey_200"
+        android:textColor="@color/grey_400"
         android:textSize="@dimen/dimen_12_sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -29,7 +29,7 @@
         android:layout_gravity="end|center"
         android:layout_marginHorizontal="@dimen/dimen_30_dp"
         android:text="@string/line_up_text"
-        android:textColor="@color/grey_200"
+        android:textColor="@color/grey_400"
         android:textSize="@dimen/dimen_12_sp" />
 
 </FrameLayout>
