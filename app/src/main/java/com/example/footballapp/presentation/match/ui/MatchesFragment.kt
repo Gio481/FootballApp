@@ -1,9 +1,17 @@
 package com.example.footballapp.presentation.match.ui
 
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballapp.databinding.FragmentMatchesBinding
+import com.example.footballapp.domain.model.TeamDomain
 import com.example.footballapp.presentation.base.ui.BaseFragment
+import com.example.footballapp.presentation.match.adapter.MatchAdapter
+import com.example.footballapp.presentation.match.adapter.helper.AdapterHelper
+import com.example.footballapp.presentation.match.adapter.helper.AdapterHelperImpl
 import com.example.footballapp.presentation.match.viewmodel.MatchesViewModel
 import com.example.footballapp.util.BindingInflater
+import com.example.footballapp.util.extensions.*
+import kotlinx.coroutines.launch
 
 class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>() {
 
@@ -12,5 +20,75 @@ class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>()
 
     override fun getViewModelClass(): Class<MatchesViewModel> = MatchesViewModel::class.java
 
-    override fun onBindViewModel(viewModel: MatchesViewModel) {}
+    private lateinit var helper: AdapterHelper
+    private lateinit var matchAdapter: MatchAdapter
+
+    override fun onBindViewModel(viewModel: MatchesViewModel) {
+        setUpMatchAdapter(viewModel)
+        observeMatchLiveData(viewModel)
+        observeErrorLiveData(viewModel)
+    }
+
+    private fun setUpMatchAdapter(viewModel: MatchesViewModel) {
+        with(viewModel) {
+            lifecycleScope.launch {
+                helper = AdapterHelperImpl(firstHalfScore(), secondHalfScore())
+                matchAdapter = MatchAdapter(helper)
+                setUpRecyclerView()
+                getFootballMatch()
+            }
+        }
+    }
+
+    private fun observeMatchLiveData(viewModel: MatchesViewModel) {
+        observer(viewModel.footballMatchLiveData) { matchDomain ->
+            with(matchDomain) {
+                configureBallPossession(team1, team2)
+                configureMatchInfoCustomView(matchDate, stadiumAddress)
+                configureClubInfoCustomView(team1, team2, matchTime)
+                matchAdapter.submitList(summary)
+            }
+        }
+    }
+
+    private fun configureClubInfoCustomView(team1: TeamDomain, team2: TeamDomain, time: Double) {
+        with(binding.clubsInfoCustomView) {
+            homeTeamName = team1.teamName
+            awayTeamName = team2.teamName
+            setHomeTeamLogo(team1.teamImage)
+            setAwayTeamLogo(team2.teamImage)
+            binding.clubsInfoCustomView.time = time.getTime()
+            score = team1.score.getScore(team2.score)
+        }
+    }
+
+    private fun configureMatchInfoCustomView(date: Long, stadium: String) {
+        with(binding.matchInfoCustomView) {
+            matchDate = date.formatDate()
+            matchStadium = stadium
+        }
+    }
+
+    private fun configureBallPossession(team1: TeamDomain, team2: TeamDomain) {
+        with(binding.clubsBallPossessionCustomView) {
+            with(team1) {
+                homeTeamPossession = ballPosition.getPossession()
+                possession = ballPosition
+            }
+            awayTeamPossession = team2.ballPosition.getPossession()
+        }
+    }
+
+    private fun observeErrorLiveData(viewModel: MatchesViewModel) {
+        observer(viewModel.errorLiveData) {
+            showToast(it)
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        with(binding.matchActionsRecyclerView) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = matchAdapter
+        }
+    }
 }
