@@ -46,7 +46,7 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
     }
 
     private fun configureMultipleActions(view:TeamActionsCustomView,actionListSize:Int){
-        if (actionListSize > 1) view.removeRoundView()
+        if (actionListSize > ONE_ITEM) view.removeRoundView()
     }
 
     private fun determineTeamActions(
@@ -108,4 +108,7 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
         view.subOffPlayer = action.player2?.playerName?.getName()
     }
 
+    companion object{
+        private const val ONE_ITEM = 1
+    }
 }
