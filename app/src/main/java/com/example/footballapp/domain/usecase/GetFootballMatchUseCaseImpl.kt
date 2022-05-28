@@ -16,21 +16,14 @@ class GetFootballMatchUseCaseImpl(private val repository: FootballMatchRepositor
         return repositoryDataFetcher({ repository.footballMatch() }, { action(it) })
     }
 
-
-    override suspend fun getFirstHalfScore(action: (message: String) -> Unit): String {
-        makeTeamsScoresNull()
+    override suspend fun getHalfTimeScore(
+        halfTime: IntRange,
+        action: (message: String) -> Unit,
+    ): String {
+        resetTeamScores()
         getFootballMatch(action)?.summary?.map {
-            it.team1Action?.map { action -> countGoals(action, it.actionTime, 0..45) }
-            it.team2Action?.map { action -> countGoals(action, it.actionTime, 0..45) }
-        }
-        return "$firstTeamScore : $secondTeamScore"
-    }
-
-    override suspend fun getSecondHalfScore(action: (message: String) -> Unit): String {
-        makeTeamsScoresNull()
-        getFootballMatch(action)?.summary?.map {
-            it.team1Action?.map { action -> countGoals(action, it.actionTime, 46..90) }
-            it.team2Action?.map { action -> countGoals(action, it.actionTime, 46..90) }
+            it.team1Action?.map { action -> countGoals(action, it.actionTime, halfTime) }
+            it.team2Action?.map { action -> countGoals(action, it.actionTime, halfTime) }
         }
         return "$firstTeamScore : $secondTeamScore"
     }
@@ -57,7 +50,7 @@ class GetFootballMatchUseCaseImpl(private val repository: FootballMatchRepositor
         }
     }
 
-    private fun makeTeamsScoresNull() {
+    private fun resetTeamScores() {
         firstTeamScore = 0
         secondTeamScore = 0
     }
