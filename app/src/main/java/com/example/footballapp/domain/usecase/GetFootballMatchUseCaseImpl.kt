@@ -10,8 +10,8 @@ import com.example.footballapp.util.repositoryDataFetcher
 class GetFootballMatchUseCaseImpl(private val repository: FootballMatchRepository) :
     GetFootballMatchUseCase {
 
-    private var firstTeamScore=0
-    private var secondTeamScore=0
+    private var firstTeamScore = 0
+    private var secondTeamScore = 0
     override suspend fun getFootballMatch(action: (message: String) -> Unit): MatchDomain? {
         return repositoryDataFetcher({ repository.footballMatch() }, { action(it) })
     }
@@ -41,14 +41,19 @@ class GetFootballMatchUseCaseImpl(private val repository: FootballMatchRepositor
         val ownGoal = team.action.goalType == GoalType.OWN_GOAL.value
         val goal = team.action.goalType == GoalType.GOAL.value
 
-        if (actionTime.toInt() in time && secondTeam && goal) {
-            secondTeamScore++
-        } else if (actionTime.toInt() in time && secondTeam && ownGoal) {
-            firstTeamScore++
-        } else if (actionTime.toInt() in time && firstTeam && goal) {
-            firstTeamScore++
-        } else if (actionTime.toInt() in time && firstTeam && ownGoal) {
-            secondTeamScore++
+        when {
+            actionTime.toInt() in time && secondTeam && goal -> {
+                secondTeamScore++
+            }
+            actionTime.toInt() in time && secondTeam && ownGoal -> {
+                firstTeamScore++
+            }
+            actionTime.toInt() in time && firstTeam && goal -> {
+                firstTeamScore++
+            }
+            actionTime.toInt() in time && firstTeam && ownGoal -> {
+                secondTeamScore++
+            }
         }
     }
 
