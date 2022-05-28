@@ -27,13 +27,13 @@ class MatchesViewModel : ViewModel() {
     }
 
     suspend fun firstHalfScore(): String {
-        return koinComponents.matchUseCase.getFirstHalfScore {
+        return koinComponents.matchUseCase.getHalfTimeScore(0..45) {
             _errorLiveData.postValue(it)
         }
     }
 
     suspend fun secondHalfScore(): String {
-        return koinComponents.matchUseCase.getSecondHalfScore {
+        return koinComponents.matchUseCase.getHalfTimeScore(46..90) {
             _errorLiveData.postValue(it)
         }
     }
