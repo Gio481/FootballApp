@@ -4,30 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.example.footballapp.presentation.match.custom_view.HalfTimeCustomView
-        android:id="@+id/halfTimeCustomView"
+    <com.example.customview.ui.HalfTimeCustomView
+        android:id="@+id/halfScoreCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:halfTime="firstHalf"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.footballapp.presentation.match.custom_view.TeamActionsContainerCustomView
+    <com.example.customview.ui.TeamActionsContainerCustomView
         android:id="@+id/team1ActionsContainerCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_15_dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView" />
+        app:layout_constraintTop_toBottomOf="@id/halfScoreCustomView" />
 
-    <com.example.footballapp.presentation.match.custom_view.TeamActionsContainerCustomView
+    <com.example.customview.ui.TeamActionsContainerCustomView
         android:id="@+id/team2ActionsContainerCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_15_dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/halfTimeCustomView" />
+        app:layout_constraintTop_toBottomOf="@id/halfScoreCustomView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
