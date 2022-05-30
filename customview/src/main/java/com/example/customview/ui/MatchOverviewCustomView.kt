@@ -1,10 +1,10 @@
-package com.example.footballapp.presentation.match.custom_view
+package com.example.customview.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.example.footballapp.databinding.MatchOverviewCustomViewBinding
+import com.example.customview.databinding.MatchOverviewCustomViewBinding
 
 class MatchOverviewCustomView @JvmOverloads constructor(
     context: Context,

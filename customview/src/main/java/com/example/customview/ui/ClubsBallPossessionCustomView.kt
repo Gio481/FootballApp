@@ -1,11 +1,11 @@
-package com.example.footballapp.presentation.match.custom_view
+package com.example.customview.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.footballapp.R
-import com.example.footballapp.databinding.ClubsBallPossessionCustomViewBinding
+import com.example.customview.R
+import com.example.customview.databinding.ClubsBallPossessionCustomViewBinding
 
 class ClubsBallPossessionCustomView @JvmOverloads constructor(
     context: Context,

@@ -1,16 +1,16 @@
-package com.example.footballapp.presentation.match.custom_view
+package com.example.customview.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.example.footballapp.databinding.TeamActionsContainerCustomViewBinding
-import com.example.footballapp.domain.model.ActionDomain
-import com.example.footballapp.domain.model.TeamActionDomain
-import com.example.footballapp.presentation.match.types.GoalType
-import com.example.footballapp.presentation.match.types.MatchActionsType
-import com.example.footballapp.presentation.match.types.MatchTeamType
-import com.example.footballapp.util.extensions.getName
+import com.example.customview.databinding.TeamActionsContainerCustomViewBinding
+import com.example.customview.extension.getName
+import com.example.customview.model.ActionUI
+import com.example.customview.model.TeamActionUI
+import com.example.customview.types.GoalType
+import com.example.customview.types.MatchActionsType
+import com.example.customview.types.MatchTeamType
 
 class TeamActionsContainerCustomView @JvmOverloads constructor(
     context: Context,
@@ -21,12 +21,17 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
     private val binding =
         TeamActionsContainerCustomViewBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun getFootballTeamInfo(team: List<TeamActionDomain>, actionTime: String) {
+    fun getFootballTeamInfo(team: List<TeamActionUI>, actionTime: String) {
         team.map { determineTeamType(it, actionTime, team.size) }
     }
 
-    private fun determineTeamType(teamAction: TeamActionDomain, actionTime: String, actionsListSize: Int) {
+    private fun determineTeamType(
+        teamAction: TeamActionUI,
+        actionTime: String,
+        actionsListSize: Int,
+    ) {
         val teamActionsView = TeamActionsCustomView(context, attrs)
+
         with(binding) {
             when (teamAction.teamType) {
                 MatchTeamType.TEAM1.value -> {
@@ -45,13 +50,13 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
         }
     }
 
-    private fun configureMultipleActions(view:TeamActionsCustomView,actionListSize:Int){
+    private fun configureMultipleActions(view: TeamActionsCustomView, actionListSize: Int) {
         if (actionListSize > ONE_ITEM) view.removeRoundView()
     }
 
     private fun determineTeamActions(
         view: TeamActionsCustomView,
-        action: TeamActionDomain,
+        action: TeamActionUI,
         actionTime: String,
     ) {
         with(view) {
@@ -82,7 +87,7 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
 
     private fun determineGoalType(
         view: TeamActionsCustomView,
-        action: ActionDomain?,
+        action: ActionUI?,
         actionTime: String,
     ) {
         with(view) {
@@ -99,16 +104,16 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
         }
     }
 
-    private fun nonSubstitutionPlayers(view: TeamActionsCustomView, action: ActionDomain) {
+    private fun nonSubstitutionPlayers(view: TeamActionsCustomView, action: ActionUI) {
         view.mainActionPlayer = action.player?.playerName?.getName()
     }
 
-    private fun substitutionPlayers(view: TeamActionsCustomView, action: ActionDomain) {
+    private fun substitutionPlayers(view: TeamActionsCustomView, action: ActionUI) {
         view.subOnPlayer = action.player1?.playerName?.getName()
         view.subOffPlayer = action.player2?.playerName?.getName()
     }
 
-    companion object{
+    companion object {
         private const val ONE_ITEM = 1
     }
 }

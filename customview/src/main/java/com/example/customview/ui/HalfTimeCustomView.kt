@@ -1,12 +1,12 @@
-package com.example.footballapp.presentation.match.custom_view
+package com.example.customview.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.footballapp.R
-import com.example.footballapp.databinding.HalfTimeCustomViewBinding
-import com.example.footballapp.presentation.match.types.HalfTimeType
+import com.example.customview.R
+import com.example.customview.databinding.HalfTimeCustomViewBinding
+import com.example.customview.types.HalfTimeType
 
 class HalfTimeCustomView @JvmOverloads constructor(
     context: Context,
@@ -35,7 +35,8 @@ class HalfTimeCustomView @JvmOverloads constructor(
             defStyleAttr,
             0
         )
-        halfTime = HalfTimeType.values()[typedArray.getInt(R.styleable.HalfTimeCustomView_halfTime, 0)]
+        halfTime =
+            HalfTimeType.values()[typedArray.getInt(R.styleable.HalfTimeCustomView_halfTime, 0)]
         score = typedArray.getString(R.styleable.HalfTimeCustomView_halfTimeScore)
         typedArray.recycle()
     }

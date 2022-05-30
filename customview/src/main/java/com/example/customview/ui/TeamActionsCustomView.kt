@@ -1,17 +1,17 @@
-package com.example.footballapp.presentation.match.custom_view
+package com.example.customview.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isInvisible
-import com.example.footballapp.R
-import com.example.footballapp.databinding.TeamActionsCustomViewBinding
-import com.example.footballapp.presentation.match.types.GoalType
-import com.example.footballapp.presentation.match.types.MatchActionsType
-import com.example.footballapp.presentation.match.types.MatchTeamType
-import com.example.footballapp.util.extensions.*
-import com.example.footballapp.util.getActionType
+import com.example.customview.R
+import com.example.customview.databinding.TeamActionsCustomViewBinding
+import com.example.customview.extension.*
+import com.example.customview.types.GoalType
+import com.example.customview.types.MatchActionsType
+import com.example.customview.types.MatchTeamType
+import com.example.customview.util.getActionType
 
 class TeamActionsCustomView(
     context: Context,
@@ -150,9 +150,12 @@ class TeamActionsCustomView(
     fun setMathActionText(matchActionsType: Int, actionTime: String) {
         with(binding.actionTextView) {
             when (matchActionsType) {
-                MatchActionsType.YELLOW_CARD.value -> text = TRIPPING_TEXT.getString(actionTime, context)
-                MatchActionsType.RED_CARD.value -> text = TRIPPING_TEXT.getString(actionTime, context)
-                MatchActionsType.SUBSTITUTION.value -> text = SUBSTITUTION_TEXT.getString(actionTime, context)
+                MatchActionsType.YELLOW_CARD.value -> text =
+                    TRIPPING_TEXT.getString(actionTime, context)
+                MatchActionsType.RED_CARD.value -> text =
+                    TRIPPING_TEXT.getString(actionTime, context)
+                MatchActionsType.SUBSTITUTION.value -> text =
+                    SUBSTITUTION_TEXT.getString(actionTime, context)
             }
         }
     }
@@ -169,18 +172,16 @@ class TeamActionsCustomView(
         }
     }
 
-    fun removeRoundView() {
-        binding.roundDecoratorViewOnActions.isVisible(false)
-    }
+    fun removeRoundView() = binding.roundDecoratorViewOnActions.isVisible(false)
 
     companion object {
-        private const val FOOTBALL_BALL = R.drawable.ic_football_ball
-        private const val CARD = R.drawable.ic_card
-        private const val RED_COLOR = R.color.red_700
-        private const val GREEN_COLOR = R.color.green_500
-        private const val TRIPPING_TEXT = R.string.tripping_text
-        private const val SUBSTITUTION_TEXT = R.string.substitution_text
-        private const val GOAL_TEXT = R.string.goal_text
-        private const val OWN_GOAL_TEXT = R.string.own_goal_text
+        private val FOOTBALL_BALL = R.drawable.ic_football_ball
+        private val CARD = R.drawable.ic_card
+        private val RED_COLOR = R.color.red_700
+        private val GREEN_COLOR = R.color.green_500
+        private val TRIPPING_TEXT = R.string.tripping_text
+        private val SUBSTITUTION_TEXT = R.string.substitution_text
+        private val GOAL_TEXT = R.string.goal_text
+        private val OWN_GOAL_TEXT = R.string.own_goal_text
     }
 }

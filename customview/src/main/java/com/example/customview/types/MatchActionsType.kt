@@ -1,4 +1,4 @@
-package com.example.footballapp.presentation.match.types
+package com.example.customview.types
 
 enum class MatchActionsType(val value: Int) {
     GOAL(1),
