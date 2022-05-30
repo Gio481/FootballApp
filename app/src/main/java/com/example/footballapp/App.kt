@@ -1,10 +1,7 @@
 package com.example.footballapp
 
 import android.app.Application
-import com.example.footballapp.di.dataMapperModule
-import com.example.footballapp.di.networkModule
-import com.example.footballapp.di.repositoryModule
-import com.example.footballapp.di.useCaseModule
+import com.example.footballapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
