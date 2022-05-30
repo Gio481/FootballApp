@@ -4,5 +4,4 @@ import com.example.footballapp.domain.model.MatchDomain
 
 interface GetFootballMatchUseCase {
     suspend fun getFootballMatch(action: (message: String) -> Unit): MatchDomain?
-    suspend fun getHalfTimeScore(halfTime:IntRange, action: (message: String) -> Unit): String
 }
