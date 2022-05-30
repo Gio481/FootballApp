@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.footballapp.R
 import com.example.footballapp.databinding.ClubsInfoCustomViewBinding
+import com.example.footballapp.util.extensions.setImage
 
 class ClubsInfoCustomView @JvmOverloads constructor(
     context: Context,
@@ -55,7 +56,11 @@ class ClubsInfoCustomView @JvmOverloads constructor(
         typedArray.recycle()
     }
 
-    fun setHomeTeamLogo(url: String) {}
+    fun setHomeTeamLogo(url: String) {
+        binding.homeClubLogoImageView.setImage(url)
+    }
 
-    fun setAwayTeamLogo(url: String) {}
+    fun setAwayTeamLogo(url: String) {
+        binding.awayClubLogoImageView.setImage(url)
+    }
 }
