@@ -38,9 +38,9 @@ class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>()
                 configureBallPossession(team1, team2)
                 configureMatchInfoCustomView(matchDate, stadiumAddress)
                 configureClubInfoCustomView(team1, team2, matchTime)
-                matchAdapter.submitList(summary)
-                matchAdapter.setHalfTimeScore(viewModel.getHalfTimeScore(0..45, matchDomain),
+                helper.setHalfTimeScore(viewModel.getHalfTimeScore(0..45, matchDomain),
                     viewModel.getHalfTimeScore(45..90, matchDomain))
+                matchAdapter.submitList(summary)
             }
         }
     }
