@@ -14,19 +14,16 @@ class AdapterHelperImpl(
 
     private var isFirstHalfChecked = false
     private var isSecondHalfChecked = false
+    private var firstHalfScore: String = ""
+    private var secondHalfScore: String = ""
 
-    override fun determineHalfTime(
-        view: HalfTimeCustomView,
-        summaryDomain: SummaryDomain,
-        firstHalf: String,
-        secondHalf: String,
-    ) {
+    override fun determineHalfTime(view: HalfTimeCustomView, summaryDomain: SummaryDomain) {
         if (summaryDomain.actionTime.toInt() < FIRST_HALF_TIME_MINUTES && !isFirstHalfChecked) {
             isFirstHalfChecked = true
-            showHalfTimeView(view, HalfTimeType.FirstHalf, firstHalf)
+            showHalfTimeView(view, HalfTimeType.FirstHalf, firstHalfScore)
         } else if (summaryDomain.actionTime.toInt() > FIRST_HALF_TIME_MINUTES && !isSecondHalfChecked) {
             isSecondHalfChecked = true
-            showHalfTimeView(view, HalfTimeType.SecondHalf, secondHalf)
+            showHalfTimeView(view, HalfTimeType.SecondHalf, secondHalfScore)
         } else {
 
             view.isVisible(false)
@@ -48,6 +45,12 @@ class AdapterHelperImpl(
     override fun domainMapper(list: List<TeamActionDomain>): List<TeamActionUI> {
         return mapper.modelListMapper(list)
     }
+
+    override fun setHalfTimeScore(firstHalfScore: String, secondHalfScore: String) {
+        this.firstHalfScore = firstHalfScore
+        this.secondHalfScore = secondHalfScore
+    }
+
 
     companion object {
         private const val FIRST_HALF_TIME_MINUTES = 45

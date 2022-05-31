@@ -6,6 +6,7 @@ import com.example.footballapp.domain.model.SummaryDomain
 import com.example.footballapp.domain.model.TeamActionDomain
 
 interface AdapterHelper {
-    fun determineHalfTime(view: HalfTimeCustomView, summaryDomain: SummaryDomain,firstHalf:String, secondHalf:String)
+    fun determineHalfTime(view: HalfTimeCustomView, summaryDomain: SummaryDomain)
     fun domainMapper(list: List<TeamActionDomain>): List<TeamActionUI>
+    fun setHalfTimeScore(firstHalfScore:String, secondHalfScore:String)
 }
