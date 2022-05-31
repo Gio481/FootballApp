@@ -1,4 +1,4 @@
-package com.example.footballapp.domain.usecase
+package com.example.footballapp.domain.usecase.get_match
 
 import com.example.footballapp.domain.model.MatchDomain
 import com.example.footballapp.domain.repository.FootballMatchRepository
