@@ -38,13 +38,13 @@ class TeamActionsContainerCustomView @JvmOverloads constructor(
                     configureMultipleActions(teamActionsView, actionsListSize)
                     teamActionsView.teamType = MatchTeamType.TEAM1
                     determineTeamActions(teamActionsView, teamAction, actionTime)
-                    team1.addView(teamActionsView)
+                    teamContainerView.addView(teamActionsView)
                 }
                 MatchTeamType.TEAM2.value -> {
                     configureMultipleActions(teamActionsView, actionsListSize)
                     teamActionsView.teamType = MatchTeamType.TEAM2
                     determineTeamActions(teamActionsView, teamAction, actionTime)
-                    team2.addView(teamActionsView)
+                    teamContainerView.addView(teamActionsView)
                 }
             }
         }
