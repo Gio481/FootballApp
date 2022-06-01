@@ -14,7 +14,8 @@ class App : Application() {
                 networkModule,
                 repositoryModule,
                 useCaseModule,
-                dataMapperModule
+                dataMapperModule,
+                viewModelModule
             ))
         }
     }
