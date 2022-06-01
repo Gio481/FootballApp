@@ -62,7 +62,7 @@
         android:layout_marginTop="@dimen/dimen_20_dp"
         android:elevation="@dimen/dimen_20_dp"
         app:cardCornerRadius="@dimen/dimen_10_dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gameWeek3TextView">
 
         <com.example.customview.ui.MatchInfoCustomView
@@ -109,15 +109,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_60_dp"
-        android:background="@color/green_500"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
