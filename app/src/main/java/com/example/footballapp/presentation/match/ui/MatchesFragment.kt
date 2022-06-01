@@ -12,13 +12,14 @@ import com.example.footballapp.presentation.match.viewmodel.MatchesViewModel
 import com.example.footballapp.util.BindingInflater
 import com.example.footballapp.util.extensions.*
 import org.koin.android.ext.android.inject
+import kotlin.reflect.KClass
 
 class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>() {
 
     override val inflater: BindingInflater<FragmentMatchesBinding>
         get() = FragmentMatchesBinding::inflate
 
-    override fun getViewModelClass(): Class<MatchesViewModel> = MatchesViewModel::class.java
+    override fun getViewModelClass(): KClass<MatchesViewModel> = MatchesViewModel::class
 
     private val mapper by inject<TeamActionDomainMapper>()
     private val helper: AdapterHelper by lazy { AdapterHelperImpl(mapper) }
