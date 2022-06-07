@@ -1,8 +1,8 @@
 package com.example.footballapp.presentation.match.ui
 
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballapp.databinding.FragmentMatchesBinding
+import com.example.footballapp.domain.mapper.TeamActionDomainMapper
 import com.example.footballapp.domain.model.TeamDomain
 import com.example.footballapp.presentation.base.ui.BaseFragment
 import com.example.footballapp.presentation.match.adapter.MatchAdapter
@@ -11,34 +11,27 @@ import com.example.footballapp.presentation.match.adapter.helper.AdapterHelperIm
 import com.example.footballapp.presentation.match.viewmodel.MatchesViewModel
 import com.example.footballapp.util.BindingInflater
 import com.example.footballapp.util.extensions.*
-import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import kotlin.reflect.KClass
 
 class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>() {
 
     override val inflater: BindingInflater<FragmentMatchesBinding>
         get() = FragmentMatchesBinding::inflate
 
-    override fun getViewModelClass(): Class<MatchesViewModel> = MatchesViewModel::class.java
+    override fun getViewModelClass(): KClass<MatchesViewModel> = MatchesViewModel::class
 
-    private lateinit var helper: AdapterHelper
-    private lateinit var matchAdapter: MatchAdapter
+    private val mapper by inject<TeamActionDomainMapper>()
+    private val helper: AdapterHelper by lazy { AdapterHelperImpl(mapper) }
+    private val matchAdapter by lazy { MatchAdapter(helper) }
 
     override fun onBindViewModel(viewModel: MatchesViewModel) {
-        setUpMatchAdapter(viewModel)
+        viewModel.getFootballMatch()
         observeMatchLiveData(viewModel)
+        setUpRecyclerView()
         observeErrorLiveData(viewModel)
     }
 
-    private fun setUpMatchAdapter(viewModel: MatchesViewModel) {
-        with(viewModel) {
-            lifecycleScope.launch {
-                helper = AdapterHelperImpl(firstHalfScore(), secondHalfScore())
-                matchAdapter = MatchAdapter(helper)
-                setUpRecyclerView()
-                getFootballMatch()
-            }
-        }
-    }
 
     private fun observeMatchLiveData(viewModel: MatchesViewModel) {
         observer(viewModel.footballMatchLiveData) { matchDomain ->
@@ -46,6 +39,8 @@ class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>()
                 configureBallPossession(team1, team2)
                 configureMatchInfoCustomView(matchDate, stadiumAddress)
                 configureClubInfoCustomView(team1, team2, matchTime)
+                helper.setHalfTimeScore(viewModel.getHalfTimeScore(0..45, matchDomain),
+                    viewModel.getHalfTimeScore(45..90, matchDomain))
                 matchAdapter.submitList(summary)
             }
         }

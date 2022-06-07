@@ -9,17 +9,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.example.footballapp.util.BindingInflater
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import kotlin.reflect.KClass
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     private var _binding: VB? = null
     protected val binding get() = _binding!!
-    private var viewModel: VM? = null
+    private lateinit var viewModel: VM
     abstract val inflater: BindingInflater<VB>
-    abstract fun getViewModelClass(): Class<VM>?
+    abstract fun getViewModelClass(): KClass<VM>
     abstract fun onBindViewModel(viewModel: VM)
-
-    private fun providerViewModel(): VM? =
-        if (getViewModelClass() != null) ViewModelProvider(this)[getViewModelClass()!!] else null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,12 +31,12 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = this.providerViewModel()
+        viewModel = getViewModel(clazz = getViewModelClass())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onBindViewModel(viewModel ?: return)
+        onBindViewModel(viewModel)
     }
 
     override fun onDestroyView() {

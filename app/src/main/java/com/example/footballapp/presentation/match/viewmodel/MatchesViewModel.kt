@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.footballapp.domain.model.MatchDomain
-import com.example.footballapp.util.KoinComponentInstances
+import com.example.footballapp.domain.usecase.get_match.GetFootballMatchUseCase
+import com.example.footballapp.domain.usecase.get_score.GetHalfTimeScoreUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MatchesViewModel : ViewModel() {
-    private val koinComponents by lazy { KoinComponentInstances() }
+class MatchesViewModel(
+    private val getFootballMatchUseCase: GetFootballMatchUseCase,
+    private val getHalfTimeScoreUseCase: GetHalfTimeScoreUseCase,
+) : ViewModel() {
 
     private val _footballMatchLiveData: MutableLiveData<MatchDomain> = MutableLiveData()
     val footballMatchLiveData: LiveData<MatchDomain> = _footballMatchLiveData
@@ -20,21 +23,13 @@ class MatchesViewModel : ViewModel() {
 
     fun getFootballMatch() {
         viewModelScope.launch(Dispatchers.IO) {
-            _footballMatchLiveData.postValue(koinComponents.matchUseCase.getFootballMatch {
+            _footballMatchLiveData.postValue(getFootballMatchUseCase.getFootballMatch {
                 _errorLiveData.postValue(it)
             })
         }
     }
 
-    suspend fun firstHalfScore(): String {
-        return koinComponents.matchUseCase.getHalfTimeScore(0..45) {
-            _errorLiveData.postValue(it)
-        }
-    }
-
-    suspend fun secondHalfScore(): String {
-        return koinComponents.matchUseCase.getHalfTimeScore(46..90) {
-            _errorLiveData.postValue(it)
-        }
+    fun getHalfTimeScore(halfTime: IntRange, matchDomain: MatchDomain?): String {
+        return getHalfTimeScoreUseCase.getHalfTimeScore(halfTime, matchDomain)
     }
 }
