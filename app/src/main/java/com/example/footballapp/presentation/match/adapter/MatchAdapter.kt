@@ -25,11 +25,8 @@ class MatchAdapter(private val helper: AdapterHelper) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(summaryDomain: SummaryDomain, helper: AdapterHelper) {
             with(binding) {
-                with(summaryDomain) {
-                    helper.determineHalfTime(halfScoreCustomView, summaryDomain)
-                    team1Action?.let { team1ActionsContainerCustomView.getFootballTeamInfo(helper.domainMapper(it), actionTime) }
-                    team2Action?.let { team2ActionsContainerCustomView.getFootballTeamInfo(helper.domainMapper(it), actionTime) }
-                }
+                helper.determineHalfTime(halfScoreCustomView, summaryDomain)
+                teamActionsContainerCustomView.getMatchSummary(helper.domainMapper(summaryDomain), helper.matchAttributesMapper())
             }
         }
     }

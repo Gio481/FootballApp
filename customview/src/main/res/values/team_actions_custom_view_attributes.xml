@@ -15,9 +15,12 @@
             <enum name="home" value="0" />
             <enum name="away" value="1" />
         </attr>
-        <attr name="action" format="string" />
+        <attr name="actionText" format="string" />
         <attr name="mainActionPlayer" format="string" />
         <attr name="subOnPlayer" format="string" />
         <attr name="subOffPlayer" format="string" />
+        <attr name="actionIcon" format="reference"/>
+        <attr name="subOffIcon" format="reference"/>
+        <attr name="subOnIcon" format="reference"/>
     </declare-styleable>
 </resources>

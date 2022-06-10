@@ -1,15 +1,18 @@
 package com.example.footballapp.presentation.match.adapter.helper
 
 import com.example.customview.extension.isVisible
-import com.example.customview.model.TeamActionUI
+import com.example.customview.model.MatchAttributesUI
+import com.example.customview.model.SummaryUI
 import com.example.customview.types.HalfTimeType
 import com.example.customview.ui.HalfTimeCustomView
-import com.example.footballapp.domain.mapper.TeamActionDomainMapper
+import com.example.footballapp.domain.mapper.CustomAttrsDomainMapper
+import com.example.footballapp.domain.mapper.SummaryDomainMapper
 import com.example.footballapp.domain.model.SummaryDomain
-import com.example.footballapp.domain.model.TeamActionDomain
 
 class AdapterHelperImpl(
-    private val mapper: TeamActionDomainMapper,
+    private val mapper: SummaryDomainMapper,
+    private val customAttrsMapper: CustomAttrsDomainMapper,
+    private val attrsCreator: MatchAttributesCreator
 ) : AdapterHelper {
 
     private var isFirstHalfChecked = false
@@ -42,13 +45,17 @@ class AdapterHelperImpl(
         }
     }
 
-    override fun domainMapper(list: List<TeamActionDomain>): List<TeamActionUI> {
-        return mapper.modelListMapper(list)
+    override fun domainMapper(summary: SummaryDomain): SummaryUI {
+        return mapper.modelMapper(summary)
     }
 
     override fun setHalfTimeScore(firstHalfScore: String, secondHalfScore: String) {
         this.firstHalfScore = firstHalfScore
         this.secondHalfScore = secondHalfScore
+    }
+
+    override fun matchAttributesMapper(): MatchAttributesUI {
+        return customAttrsMapper.modelMapper(attrsCreator.customAttrs)
     }
 
 

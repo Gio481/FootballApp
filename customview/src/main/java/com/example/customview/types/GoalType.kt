@@ -1,5 +1,7 @@
 package com.example.customview.types
 
-enum class GoalType(val value: Int) {
-    GOAL(1), OWN_GOAL(2)
+import com.example.customview.R
+
+enum class GoalType(val value: Int, val icon: Int) {
+    GOAL(1, R.drawable.ic_football_ball), OWN_GOAL(2,R.drawable.ic_football_ball)
 }

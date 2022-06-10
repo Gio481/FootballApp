@@ -1,9 +1,8 @@
 package com.example.footballapp.di
 
 import com.example.footballapp.data.mapper.*
-import com.example.footballapp.domain.mapper.ActionDomainMapper
-import com.example.footballapp.domain.mapper.PlayerDomainMapper
-import com.example.footballapp.domain.mapper.TeamActionDomainMapper
+import com.example.footballapp.domain.mapper.*
+import com.example.footballapp.presentation.match.adapter.helper.MatchAttributesCreator
 import org.koin.dsl.module
 
 val dataMapperModule = module {
@@ -16,4 +15,9 @@ val dataMapperModule = module {
     single { TeamActionDomainMapper(get()) }
     single { ActionDomainMapper(get()) }
     single { PlayerDomainMapper() }
+    single { SummaryDomainMapper(get()) }
+    single { SubstitutionActionDomainMapper() }
+    single { RegularActionAttrsDomainMapper() }
+    single { CustomAttrsDomainMapper(get(), get()) }
+    single { MatchAttributesCreator() }
 }

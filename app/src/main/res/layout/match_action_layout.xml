@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.customview.ui.TeamActionsContainerCustomView
-        android:id="@+id/team1ActionsContainerCustomView"
+        android:id="@+id/teamActionsContainerCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_15_dp"
@@ -19,13 +19,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/halfScoreCustomView" />
 
-    <com.example.customview.ui.TeamActionsContainerCustomView
-        android:id="@+id/team2ActionsContainerCustomView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_15_dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/halfScoreCustomView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,6 @@ fun provideHttpClient(): OkHttpClient {
 fun provideRetrofit(): Retrofit {
     return retrofit {
         baseUrl(BASE_URL)
-        client(provideHttpClient())
         addConverterFactory(provideGsonConvertorFactory())
     }
 }

@@ -3,7 +3,7 @@ package com.example.customview.extension
 import android.content.Context
 
 fun Int.getString(actionTime: String, context: Context): String {
-    return actionTime + context.getString(this)
+    return "$actionTime'  ${context.getString(this)}"
 }
 
 fun String.getName(): String {

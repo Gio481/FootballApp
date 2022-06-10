@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.footballapp.domain.model.MatchDomain
 import com.example.footballapp.domain.usecase.get_match.GetFootballMatchUseCase
 import com.example.footballapp.domain.usecase.get_score.GetHalfTimeScoreUseCase
+import com.example.footballapp.util.KoinComponentsInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

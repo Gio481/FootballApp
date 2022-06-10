@@ -58,6 +58,30 @@ class TeamActionsCustomView(
             field = value
         }
 
+    var actionText: String? = null
+        set(value) {
+            binding.actionTextView.text = value
+            field = value
+        }
+
+    var actionIcon: Int? = null
+        set(value) {
+            value?.let { binding.actionView.setBackground(context, it) }
+            field = value
+        }
+
+    var subOnIcon: Int? = null
+        set(value) {
+            value?.let { binding.subOnView.setBackground(context, it) }
+            field = value
+        }
+
+    var subOffIcon: Int? = null
+        set(value) {
+            value?.let { binding.subOffView.setBackground(context, it) }
+            field = value
+        }
+
     init {
         val typedArray = context.theme.obtainStyledAttributes(
             attrs,
@@ -80,6 +104,10 @@ class TeamActionsCustomView(
         subOnPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOnPlayer)
         subOffPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_subOffPlayer)
         mainActionPlayer = typedArray.getString(R.styleable.TeamActionsCustomView_mainActionPlayer)
+        actionText = typedArray.getString(R.styleable.TeamActionsCustomView_actionText)
+        actionIcon = typedArray.getResourceId(R.styleable.TeamActionsCustomView_actionIcon, R.drawable.ic_card)
+        subOnIcon = typedArray.getResourceId(R.styleable.TeamActionsCustomView_subOnIcon, R.drawable.ic_substitution)
+        subOffIcon = typedArray.getResourceId(R.styleable.TeamActionsCustomView_subOffIcon, R.drawable.ic_substitution)
         typedArray.recycle()
     }
 
@@ -93,8 +121,8 @@ class TeamActionsCustomView(
     private fun determineGoalType(goalType: GoalType) {
         if (actionType == MatchActionsType.GOAL) {
             when (goalType) {
-                GoalType.GOAL -> configureActionView(FOOTBALL_BALL, GREEN_COLOR)
-                GoalType.OWN_GOAL -> configureActionView(FOOTBALL_BALL, RED_COLOR)
+                GoalType.GOAL -> configureActionView(goalType.icon, GREEN_COLOR)
+                GoalType.OWN_GOAL -> configureActionView(goalType.icon, RED_COLOR)
             }
         }
     }
@@ -103,15 +131,15 @@ class TeamActionsCustomView(
         when (actionsType) {
             MatchActionsType.GOAL -> {
                 isActionSubstitution(false)
-                configureActionView(FOOTBALL_BALL)
+                configureActionView(actionsType.icon)
             }
             MatchActionsType.YELLOW_CARD -> {
                 isActionSubstitution(false)
-                configureActionView(CARD)
+                configureActionView(actionsType.icon)
             }
             MatchActionsType.RED_CARD -> {
                 isActionSubstitution(false)
-                configureActionView(CARD, RED_COLOR)
+                configureActionView(actionsType.icon, RED_COLOR)
             }
             MatchActionsType.SUBSTITUTION -> {
                 isActionSubstitution(true)
@@ -125,7 +153,6 @@ class TeamActionsCustomView(
             color?.let { setBackgroundTint(context, it) }
         }
     }
-
 
     private fun isActionSubstitution(visible: Boolean) {
         with(binding) {
@@ -147,25 +174,30 @@ class TeamActionsCustomView(
         subOffPlayer?.let { binding.subOffPlayerImageView.setImage(it) }
     }
 
-    fun setMathActionText(matchActionsType: Int, actionTime: String) {
+    fun setMathActionText(matchActionsType: Int, actionTime: String, userActionText: Int? = null) {
         with(binding.actionTextView) {
             when (matchActionsType) {
-                MatchActionsType.YELLOW_CARD.value -> text =
-                    TRIPPING_TEXT.getString(actionTime, context)
-                MatchActionsType.RED_CARD.value -> text =
-                    TRIPPING_TEXT.getString(actionTime, context)
-                MatchActionsType.SUBSTITUTION.value -> text =
-                    SUBSTITUTION_TEXT.getString(actionTime, context)
+                MatchActionsType.YELLOW_CARD.value -> {
+                    text = (userActionText ?: TRIPPING_TEXT).getString(actionTime, context)
+                }
+                MatchActionsType.RED_CARD.value -> {
+                    text = (userActionText ?: TRIPPING_TEXT).getString(actionTime, context)
+                }
+                MatchActionsType.SUBSTITUTION.value -> {
+                    text = (userActionText ?: SUBSTITUTION_TEXT).getString(actionTime, context)
+                }
             }
         }
     }
 
-    fun setGoalActionText(goalType: Int, actionTime: String) {
+    fun setGoalActionText(goalType: Int, actionTime: String, userActionText: Int? = null) {
         with(binding.actionTextView) {
             when (goalType) {
-                GoalType.GOAL.value -> text = GOAL_TEXT.getString(actionTime, context)
+                GoalType.GOAL.value -> {
+                    text = (userActionText ?: GOAL_TEXT).getString(actionTime, context)
+                }
                 GoalType.OWN_GOAL.value -> {
-                    text = OWN_GOAL_TEXT.getString(actionTime, context)
+                    text = (userActionText ?: OWN_GOAL_TEXT).getString(actionTime, context)
                     setColor(RED_COLOR)
                 }
             }
@@ -175,8 +207,6 @@ class TeamActionsCustomView(
     fun removeRoundView() = binding.roundDecoratorViewOnActions.isVisible(false)
 
     companion object {
-        private val FOOTBALL_BALL = R.drawable.ic_football_ball
-        private val CARD = R.drawable.ic_card
         private val RED_COLOR = R.color.red_700
         private val GREEN_COLOR = R.color.green_500
         private val TRIPPING_TEXT = R.string.tripping_text

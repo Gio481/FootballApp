@@ -2,7 +2,6 @@ package com.example.footballapp.presentation.match.ui
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballapp.databinding.FragmentMatchesBinding
-import com.example.footballapp.domain.mapper.TeamActionDomainMapper
 import com.example.footballapp.domain.model.TeamDomain
 import com.example.footballapp.presentation.base.ui.BaseFragment
 import com.example.footballapp.presentation.match.adapter.MatchAdapter
@@ -10,8 +9,8 @@ import com.example.footballapp.presentation.match.adapter.helper.AdapterHelper
 import com.example.footballapp.presentation.match.adapter.helper.AdapterHelperImpl
 import com.example.footballapp.presentation.match.viewmodel.MatchesViewModel
 import com.example.footballapp.util.BindingInflater
+import com.example.footballapp.util.KoinComponentsInstance
 import com.example.footballapp.util.extensions.*
-import org.koin.android.ext.android.inject
 import kotlin.reflect.KClass
 
 class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>() {
@@ -20,9 +19,9 @@ class MatchesFragment : BaseFragment<FragmentMatchesBinding, MatchesViewModel>()
         get() = FragmentMatchesBinding::inflate
 
     override fun getViewModelClass(): KClass<MatchesViewModel> = MatchesViewModel::class
+    private val koinComponents = KoinComponentsInstance()
 
-    private val mapper by inject<TeamActionDomainMapper>()
-    private val helper: AdapterHelper by lazy { AdapterHelperImpl(mapper) }
+    private val helper: AdapterHelper by lazy { AdapterHelperImpl(koinComponents.mapper, koinComponents.customAttrsMapper, koinComponents.customAttrsCreator) }
     private val matchAdapter by lazy { MatchAdapter(helper) }
 
     override fun onBindViewModel(viewModel: MatchesViewModel) {
