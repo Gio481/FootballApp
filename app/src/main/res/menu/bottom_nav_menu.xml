@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/matchesFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_football_ball"
+        android:title="@string/matches_screen_text" />
+
+    <item
+        android:id="@+id/footballerProfile"
+        android:enabled="true"
+        android:icon="@drawable/ic_top_players"
+        android:title="@string/top_players_screen" />
+
+    <item
+        android:id="@+id/videos"
+        android:enabled="true"
+        android:icon="@drawable/ic_videos"
+        android:title="@string/videos_screen" />
+
+    <item
+        android:id="@+id/favorites"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorites"
+        android:title="@string/favorites_screen" />
+
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings_screen" />
+
+</menu>
